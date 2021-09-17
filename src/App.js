@@ -18,7 +18,8 @@ class App extends Component {
          isActive:true
        }],
        addFriendName:'',
-       currentFriendList:[]
+       currentFriendList:[],
+       currentPage:1
     }
   }
 
@@ -34,8 +35,18 @@ class App extends Component {
 
   addToFavourite = (index) => {
     const friends = this.state.friendsList;
-    friends[index].isFavourite = !friends[index].isFavourite;
-    this.setState({friendsList:friends});
+    console.log('isFav',friends[index].isFavourite);
+    this.setState({friendsList:friends},console.log(friends));
+  }
+
+  deleteItem = (index) => {
+    const friends = this.state.friendsList;
+    const deleteIndex = (this.state.currentPage-1)*4;
+    friends.splice(deleteIndex+index,1);
+    console.log(friends);
+    this.setState({friendsList:friends,currentPage:1},()=>{
+      this.setState({currentFriendList:this.state.friendsList.slice(0,4)});
+    });
   }
 
   componentDidMount() {
@@ -50,7 +61,7 @@ class App extends Component {
   changePage = (page) => {
     console.log("clicked page",page);
     const updateFriendList = this.state.friendsList.slice((page-1)*4,page*4);
-    this.setState({currentFriendList:updateFriendList});
+    this.setState({currentFriendList:updateFriendList,currentPage:page});
   }
   
   render() {
@@ -80,8 +91,8 @@ class App extends Component {
                   <td>
                     <div>
                       <span>{item.name}</span>
-                      <button style={{float:'right'}}>Delete</button>
-                      <button style={{float:'right'}}>Add Favourite</button>
+                      <button style={{float:'right'}} onClick={()=>this.deleteItem(index)}>Delete</button>
+                      <button style={{float:'right'}} onClick={()=>this.addToFavourite(index)}>Add Favourite</button>
                     </div>
                   </td>
                 </tr>
