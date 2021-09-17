@@ -30,6 +30,12 @@ class App extends Component {
     });
     this.setState({friendsList:friends});
   }
+
+  addToFavourite = (index) => {
+    const friends = this.state.friendsList;
+    friends[index].isFavourite = !friends[index].isFavourite;
+    this.setState({friendsList:friends});
+  }
   
   render() {
     const {friendsList} = this.state;
