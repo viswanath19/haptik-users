@@ -1,12 +1,9 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import { isObject, omit } from 'lodash-es';
+import { omit } from 'lodash-es';
 
 const Table = ( { children, striped, bordered, borderedRadius, hover, className, ...extraProps } ) => {
 
-    let __class = {
-
-    };
     return (
         <div className={"responsive-aio-table"}>
             <table style={{border:'1px solid black',borderCollapse:'collapse',width:'100%'}}
