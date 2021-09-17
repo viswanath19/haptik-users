@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import Table from '../src/components/table';
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        
+import React, { Component } from 'react'
+
+export class App extends Component {
+  render() {
+    return (
+      <div className="App">
+      <header className="App-header">  
       <div>
         <h1>Your Friends List</h1>
         <br/>
@@ -43,7 +45,8 @@ function App() {
       </div>
       </header>
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+export default App
