@@ -1,22 +1,46 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Table from '../src/components/table';
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        
+      <div>
+        <h1>Your Friends List</h1>
+        <br/>
+        <Table bordered>
+          <tbody>
+            <tr style={{borderBottom:'1px solid black'}}>
+              <td>
+                <div>
+                  <span>Bharat</span>
+                  <button style={{float:'right'}}>Delete</button>
+                  <button style={{float:'right'}}>Add Favourite</button>
+                </div>
+              </td>
+            </tr>
+            <tr style={{borderBottom:'1px solid black'}}>
+              <td>
+                <div>
+                  <span>Bharat</span>
+                  <button style={{float:'right'}}>Delete</button>
+                  <button style={{float:'right'}}>Add Favourite</button>
+                </div>
+              </td>
+            </tr>
+            <tr style={{borderBottom:'1px solid black'}}>
+              <td>
+                <div>
+                  <span>Bharat</span>
+                    <button style={{float:'right'}}>Delete</button>
+                    <button style={{float:'right'}}>Add Favourite</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
       </header>
     </div>
   );
