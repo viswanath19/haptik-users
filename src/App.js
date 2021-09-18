@@ -107,8 +107,11 @@ class App extends Component {
                   <td>
                     <div>
                       <span>{item.name}</span>
-                      <button style={{float:'right'}} onClick={()=>this.deleteItem(index)}>Delete</button>
-                      <button style={{float:'right'}} onClick={()=>this.addToFavourite(index)}>Add Favourite</button>
+                      <button style={{float:'right'}}  onClick={()=>this.deleteItem(index)}><i className="fa fa-trash"/></button>
+                      <button style={{float:'right'}}  onClick={()=>this.addToFavourite(index)}>
+                        {!item.isFavourite && <i className="fa fa-star-o"/>}
+                        {item.isFavourite && <i className="fa fa-star"/>}
+                      </button>
                     </div>
                   </td>
                 </tr>
