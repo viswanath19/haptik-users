@@ -25,12 +25,15 @@ class App extends Component {
 
   addFriend = () => {
     const friends = this.state.friendsList;
-    friends.push({
+    const newFriend = [];
+    newFriend.push({
       name:this.state.addFriendName,
       isFavourite:false,
       isActive:false
     });
-    this.setState({friendsList:friends,addFriendName:'',currentFriendList:this.state.friendsList.slice(0,4)});
+    this.setState({friendsList:[...newFriend,...friends]},()=>{
+      this.setState({currentFriendList:this.state.friendsList.slice(0,4)});
+    });
   }
 
   addToFavourite = (index) => {
