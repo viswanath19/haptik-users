@@ -38,8 +38,11 @@ class App extends Component {
 
   addToFavourite = (index) => {
     const friends = this.state.friendsList;
-    console.log('isFav',friends[index].isFavourite);
-    this.setState({friendsList:friends},console.log(friends));
+    const favouriteIndex = (this.state.currentPage-1)*4;
+    friends[favouriteIndex].isFavourite = !friends[favouriteIndex].isFavourite;
+    console.log(friends);
+    this.setState({friendsList:friends});
+    this.updateCurrentPage();
   }
 
   deleteItem = (index) => {
