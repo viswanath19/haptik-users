@@ -38,7 +38,7 @@ class App extends Component {
 
   addToFavourite = (index) => {
     const friends = this.state.friendsList;
-    const favouriteIndex = (this.state.currentPage-1)*4;
+    const favouriteIndex = index + (this.state.currentPage-1)*4;
     friends[favouriteIndex].isFavourite = !friends[favouriteIndex].isFavourite;
     console.log(friends);
     this.setState({friendsList:friends});
