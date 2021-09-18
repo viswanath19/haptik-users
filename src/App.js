@@ -44,9 +44,19 @@ class App extends Component {
     const deleteIndex = (this.state.currentPage-1)*4;
     friends.splice(deleteIndex+index,1);
     console.log(friends);
-    this.setState({friendsList:friends,currentPage:1},()=>{
-      this.setState({currentFriendList:this.state.friendsList.slice(0,4)});
-    });
+    this.setState({friendsList:friends});
+    this.updateCurrentPage();
+  }
+
+  updateCurrentPage = () => {
+    const {friendsList,currentPage} = this.state;
+    if(this.state.friendsList.length > 4) {
+      const updateFriendList = friendsList.slice((currentPage-1)*4,currentPage*4);
+      this.setState({currentFriendList:updateFriendList});
+    }
+    else {
+      this.setState({currentFriendList:this.state.friendsList,currentPage:1});
+    }
   }
 
   componentDidMount() {
