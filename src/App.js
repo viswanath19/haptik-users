@@ -94,10 +94,9 @@ class App extends Component {
       <div className="App">
       <header className="App-header">  
       <div>
-        <label htmlFor="fname" style={{fontSize:'13px'}}>Friend Name:</label>
         <input type="text" placeholder="Enter Friend Name" name="fname" onChange={(e)=>{this.setState({addFriendName:e.target.value})}} onKeyDown={(e) => {
           console.log(e);
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && this.state.addFriendName.trim().length > 0) {
             this.addFriend();
           }
         }}/>
@@ -107,16 +106,18 @@ class App extends Component {
           <tbody>
             {currentFriendList.map((item,index)=>{
               return (
-                <tr style={{borderBottom:'1px solid black'}} key={index}>
-                  <td>
+                <tr className={"table-row-col"} key={index}>
+                  <td className={"table-col"}>
                     <div>
                       <span>{item.name}</span>
-                      <button style={{float:'right'}}  onClick={()=>this.deleteItem(index)}><i className="fa fa-trash"/></button>
-                      <button style={{float:'right'}}  onClick={()=>this.addToFavourite(index)}>
+                    </div>
+                  </td>
+                  <td className={"table-col"}>
+                    <button className={"fav-button"} onClick={()=>this.addToFavourite(index)}>
                         {!item.isFavourite && <i className="fa fa-star-o"/>}
                         {item.isFavourite && <i className="fa fa-star"/>}
-                      </button>
-                    </div>
+                    </button>
+                    <button className={"delete-button"} onClick={()=>this.deleteItem(index)}><i className="fa fa-trash"/></button>
                   </td>
                 </tr>
               )
