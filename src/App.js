@@ -91,6 +91,14 @@ class App extends Component {
       isSearchActive: true
     })
   }
+
+  searchClose = () => {
+    document.getElementById('sname').value='';
+    this.setState({
+      isSearchActive: false,
+      currentFriendList:this.state.friendsList.slice(0,4)
+    })
+  }
   
   render() {
     const {friendsList,currentFriendList} = this.state;
@@ -106,21 +114,23 @@ class App extends Component {
       <div className="App">
       <header className="App-header">  
       <div>
-        <input type="text" className={"addName"} placeholder="Enter Friend Name" name="fname" onChange={(e)=>{this.setState({addFriendName:e.target.value})}} onKeyDown={(e) => {
+        <input type="text" className={"addName"} placeholder="Enter Friend Name" name="fname" id="fname" onChange={(e)=>{this.setState({addFriendName:e.target.value})}} onKeyDown={(e) => {
           console.log(e);
           if (e.key === "Enter" && this.state.addFriendName.trim().length > 0) {
             this.addFriend();
+            document.getElementById('fname').value='';
           }
         }}/>
         <h1>Your Friends List</h1>
         <br/>
         <div style={{border:'1px solid black',borderBottom:'none',width:'100%'}}>
-        <input type="text" className={"search-box"} placeholder="Search Friend By Name" name="sname" onChange={(e)=>{this.setState({searchFriend:e.target.value})}} onKeyDown={(e) => {
+        <input type="text" className={"search-box"} placeholder="Search Friend By Name" name="sname" id="sname" onChange={(e)=>{this.setState({searchFriend:e.target.value})}} onKeyDown={(e) => {
           console.log(e);
           if (e.key === "Enter" && this.state.searchFriend.trim().length > 0) {
             this.searchFriend();
           }
         }}/>
+        <i className="fa fa-close" onClick={()=>{this.searchClose()}}/>
         </div>
         <Table bordered>
           <tbody>
