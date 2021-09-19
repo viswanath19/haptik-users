@@ -86,10 +86,19 @@ class App extends Component {
     console.log("searchName",this.state.searchFriend);
     const search_str = this.state.searchFriend.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
     const searchFriendList = this.state.friendsList.filter(friend=>friend.name.match(new RegExp(search_str, 'gi')));
-    this.setState({
-      currentFriendList:searchFriendList,
-      isSearchActive: true
-    })
+    if(searchFriendList.length === 0) {
+      this.setState({
+        currentFriendList:this.state.friendsList,
+        isSearchActive: true
+      })
+    }
+    else {
+      this.setState({
+        currentFriendList:searchFriendList,
+        isSearchActive: true
+      })
+    }
+    
   }
 
   searchClose = () => {
