@@ -19,7 +19,9 @@ class App extends Component {
        }],
        addFriendName:'',
        currentFriendList:[],
-       currentPage:1
+       currentPage:1,
+       searchFriend:'',
+       isSearchActive: false
     }
   }
 
@@ -79,6 +81,16 @@ class App extends Component {
     const updateFriendList = this.state.friendsList.slice((page-1)*4,page*4);
     this.setState({currentFriendList:updateFriendList,currentPage:page});
   }
+
+  searchFriend = () => {
+    console.log("searchName",this.state.searchFriend);
+    const search_str = this.state.searchFriend.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+    const searchFriendList = this.state.friendsList.filter(friend=>friend.name.match(new RegExp(search_str, 'gi')));
+    this.setState({
+      currentFriendList:searchFriendList,
+      isSearchActive: true
+    })
+  }
   
   render() {
     const {friendsList,currentFriendList} = this.state;
@@ -94,7 +106,7 @@ class App extends Component {
       <div className="App">
       <header className="App-header">  
       <div>
-        <input type="text" placeholder="Enter Friend Name" name="fname" onChange={(e)=>{this.setState({addFriendName:e.target.value})}} onKeyDown={(e) => {
+        <input type="text" className={"addName"} placeholder="Enter Friend Name" name="fname" onChange={(e)=>{this.setState({addFriendName:e.target.value})}} onKeyDown={(e) => {
           console.log(e);
           if (e.key === "Enter" && this.state.addFriendName.trim().length > 0) {
             this.addFriend();
@@ -102,6 +114,14 @@ class App extends Component {
         }}/>
         <h1>Your Friends List</h1>
         <br/>
+        <div style={{border:'1px solid black',borderBottom:'none',width:'100%'}}>
+        <input type="text" className={"search-box"} placeholder="Search Friend By Name" name="sname" onChange={(e)=>{this.setState({searchFriend:e.target.value})}} onKeyDown={(e) => {
+          console.log(e);
+          if (e.key === "Enter" && this.state.searchFriend.trim().length > 0) {
+            this.searchFriend();
+          }
+        }}/>
+        </div>
         <Table bordered>
           <tbody>
             {currentFriendList.map((item,index)=>{
@@ -124,7 +144,7 @@ class App extends Component {
             })}
           </tbody>
         </Table>
-        {friendsList.length > 4 && page.map((item,index)=>{
+        {!this.state.searchFriend && friendsList.length > 4 && page.map((item,index)=>{
           return item;
         })}
       </div>

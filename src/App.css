@@ -37,18 +37,33 @@
   }
 }
 
-input[type=text] {
+.addName {
   background: transparent;
   border: none;
   border-bottom: 1px solid #000000;
   width: 100%;
 }
-input[type=text]:focus-visible {
+.addName:focus-visible {
   background: transparent;
   border: none;
   border-bottom: 1px solid #000000;
   width: 100%;
   outline: none;
+}
+
+.search-box {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  width: 75%;
+}
+
+.search-box:focus-visible{
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  outline: none;
+  width: 75%;
 }
 
 .delete-button{
