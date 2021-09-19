@@ -99,6 +99,19 @@ class App extends Component {
       currentFriendList:this.state.friendsList.slice(0,4)
     })
   }
+
+  sortFavourite = () => {
+    const favouriteList = this.state.friendsList.filter(friend=>friend.isFavourite===true);
+    const allList = this.state.friendsList.filter(friend=>friend.isFavourite!==true);
+    const friendList = [...favouriteList,...allList];
+    this.setState({
+      friendsList: friendList
+    },()=>{
+      this.setState({
+        currentFriendList:this.state.friendsList.slice(0,4)
+      })
+    })
+  }
   
   render() {
     const {friendsList,currentFriendList} = this.state;
@@ -122,6 +135,7 @@ class App extends Component {
           }
         }}/>
         <h1>Your Friends List</h1>
+        <button className={"sort-button"} onClick={()=>this.sortFavourite()}>Sort Favourites</button>
         <br/>
         <div style={{border:'1px solid black',borderBottom:'none',width:'100%'}}>
         <input type="text" className={"search-box"} placeholder="Search Friend By Name" name="sname" id="sname" onChange={(e)=>{this.setState({searchFriend:e.target.value})}} onKeyDown={(e) => {

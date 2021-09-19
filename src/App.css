@@ -83,6 +83,15 @@
   cursor: pointer;
 }
 
+.sort-button{
+  border: 1px solid black;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  font-size: 16px;
+  float: right;
+}
+
 .table-row-col {
   border-bottom: 1px solid black;
 }
