@@ -95,8 +95,12 @@ class App extends Component {
       <header className="App-header">  
       <div>
         <label htmlFor="fname" style={{fontSize:'13px'}}>Friend Name:</label>
-        <input type="text" placeholder="Enter Friend Name" name="fname" onChange={(e)=>{this.setState({addFriendName:e.target.value})}}/>
-        <button onClick={()=>this.addFriend()}>Add Friend</button>
+        <input type="text" placeholder="Enter Friend Name" name="fname" onChange={(e)=>{this.setState({addFriendName:e.target.value})}} onKeyDown={(e) => {
+          console.log(e);
+          if (e.key === "Enter") {
+            this.addFriend();
+          }
+        }}/>
         <h1>Your Friends List</h1>
         <br/>
         <Table bordered>
